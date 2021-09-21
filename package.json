@@ -1,0 +1,31 @@
+{
+  "name": "pushy-bulk-topic-subscriber",
+  "version": "1.0.0",
+  "description": "Get json file of data to subscribe users to topics on pushy",
+  "main": "cli.js",
+  "bin": {
+    "pushy-blk-sub": "./cli.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tawfiek/pushy-bulk-topic-subscriber.git"
+  },
+  "keywords": [
+    "pushy"
+  ],
+  "author": "Tawfiek <tawfiek.108@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tawfiek/pushy-bulk-topic-subscriber/issues"
+  },
+  "homepage": "https://github.com/tawfiek/pushy-bulk-topic-subscriber#readme",
+  "dependencies": {
+    "esm": "^3.2.25"
+  }
+}
