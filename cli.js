@@ -1,14 +1,24 @@
 #! /usr/bin/env node
 const fs = require('fs');
 const path = require('path');
+const pushyTopicSubscriber = require('./pushyTopicSubscriber');
 
 const [,, ...args] = process.argv;
 
 const filePath = args[0];
 const data = fs.readFileSync(path.resolve(__dirname, filePath));
+const pushyKey = validatePushyKey(args[1]);
 const dataToImport = validateTopicsData(data);
 
-console.log('PUSHY STARTER ', dataToImport);
+(async function () {
+    try {
+        await pushyTopicSubscriber.handleBulkSubscribe(dataToImport, pushyKey);
+        process.exit(0);
+    } catch (e) {
+        console.error('ERROR: ', e);
+        process.exit(1);
+    }
+})()
 
 
 /**
@@ -16,10 +26,14 @@ console.log('PUSHY STARTER ', dataToImport);
  * @param {String} topicsRowData
  */
 function validateTopicsData (topicsRowData) {
-   const dataArray = JSON.parse(topicsRowData);
+    console.log('Validating Data ... ');
+
+    const MAX_LENGTH = 5000;
+    const dataArray = JSON.parse(topicsRowData);
 
     if (!isArray(dataArray)) throwInvalidDataStructure('Should pass an array of objects');
-
+    if (dataArray.length > MAX_LENGTH) throwInvalidDataStructure('Max length of data exceeded');
+    
     return dataArray.map(validationMapper);
 
     function validationMapper (instant) {
@@ -32,6 +46,14 @@ function validateTopicsData (topicsRowData) {
     }
 }
 
+function validatePushyKey (key) {
+    if (!key || typeof key !== 'string' || key.length !== 64) {
+        console.error('Invalid Pushy API Key');
+        process.exit(1);
+    } else {
+        return key;
+    }
+}
 
 function throwInvalidDataStructure (errorMessage = '') {
     console.error(`Invalid data structure in provided file \n`, errorMessage);
@@ -40,4 +62,4 @@ function throwInvalidDataStructure (errorMessage = '') {
 
 function isArray(object) {
     return object instanceof Array;
-};
+}

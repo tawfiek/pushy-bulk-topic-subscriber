@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/tawfiek/pushy-bulk-topic-subscriber#readme",
   "dependencies": {
-    "esm": "^3.2.25"
+    "esm": "^3.2.25",
+    "pushy": "^2.0.12"
   }
 }
