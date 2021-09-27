@@ -1,4 +1,4 @@
-[![npm version](https://badge.fury.io/js/pushy.svg)](https://www.npmjs.com/package/pushy-bulk-topic-subscriber)
+[![npm version](https://badge.fury.io/js/pushy-bulk-topic-subscriber.svg)](https://www.npmjs.com/package/pushy-bulk-topic-subscriber)
 
 # pushy-bulk-topic-subscriber
 
