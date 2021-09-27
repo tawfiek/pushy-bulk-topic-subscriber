@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/pushy.svg)](https://www.npmjs.com/package/pushy-bulk-topic-subscriber)
+
 # pushy-bulk-topic-subscriber
 
 
